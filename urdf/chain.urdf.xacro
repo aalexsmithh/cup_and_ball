@@ -159,7 +159,7 @@
 			<collision name='collision'>
 				<origin xyz="0 0 0"/>
 				<geometry>
-					<mesh filename="file://../meshes/cup1e-3.dae"/>
+					<mesh filename="package://cup_and_ball/meshes/cup1e-3.dae"/>
 				</geometry>
 				<max_contacts>10</max_contacts>
 				<surface>
@@ -179,7 +179,7 @@
 			<visual name='visual'>
 				<origin xyz="0 0 0" />
 				<geometry>
-					<mesh filename="file://../meshes/cup1e-3.dae"/>
+					<mesh filename="package://cup_and_ball/meshes/cup1e-3.dae"/>
 				</geometry>
 			</visual>
 
