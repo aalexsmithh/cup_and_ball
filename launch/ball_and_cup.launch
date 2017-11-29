@@ -4,6 +4,22 @@
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>
+	<arg name="launch_gz" default="false"/>
+
+	<group if="$(arg launch_gz)">
+		<arg name="gazebo_world_file" default="worlds/empty.world"/>
+		<arg name="extra_gazebo_args" default=""/>
+		<include file="$(find gazebo_ros)/launch/empty_world.launch">
+			<arg name="world_name" value="$(arg gazebo_world_file)"/> 
+			<arg name="paused" value="false"/>
+			<arg name="verbose" value="false"/>
+			<arg name="use_sim_time" value="true"/>
+			<arg name="gui" value="true"/>
+			<arg name="headless" value="false"/>
+			<arg name="debug" value="false"/>
+			<arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>	
+		</include>
+	</group>
 
 	# load the chain xacro
 	<arg name="chain_xacro" default="$(find cup_and_ball)/urdf/chain.urdf.xacro"/>

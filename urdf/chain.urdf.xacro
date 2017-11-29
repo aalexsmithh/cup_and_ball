@@ -67,18 +67,6 @@
 			<dynamics damping="${chain_link_damping}" friction="${chain_link_friction}"/>
 		</joint>
 
-		<!-- <link name="${name}_junta3">
-			<inertial>
-			<mass value="0.0001" />
-			<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="3.0833e-6" iyz="0" izz="5.9083e-5" />
-			</inertial>  
-		</link>
-
-		<joint name="${name}_jointfixed" type="continuous">  
-			<parent link="${name}_junta3"/>
-			<child link="${name}"/>
-			<axis xys="0 1 0"/>
-		</joint> -->
 	</xacro:macro>
 
 	<material name="Grey">
@@ -159,7 +147,7 @@
 			<collision name='collision'>
 				<origin xyz="0 0 0"/>
 				<geometry>
-					<mesh filename="package://cup_and_ball/meshes/cup1e-3.dae"/>
+					<mesh filename="package://cup_and_ball/meshes/cup1e-4.dae"/>
 				</geometry>
 				<max_contacts>10</max_contacts>
 				<surface>
@@ -179,7 +167,7 @@
 			<visual name='visual'>
 				<origin xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://cup_and_ball/meshes/cup1e-3.dae"/>
+					<mesh filename="package://cup_and_ball/meshes/cup1e-4.dae"/>
 				</geometry>
 			</visual>
 
@@ -202,18 +190,18 @@
 	
 
 	<xacro:chain_link name="0" X="${link_length}" Y="${link_yz}" Z="${link_yz}" mass="0.001"/>
-	<!-- <xacro:link_ball_joint name="0" X="${link_length}" parent="dummy"/> -->
-	<joint name="chain_fixed" type="continuous">
+	<xacro:link_ball_joint name="0" X="${link_length}" parent="cup"/>
+	<!-- <joint name="chain_fixed" type="continuous">
 		<origin xyz="0 0 0" rpy="0 0 0" />
 		<parent link="cup"/>
 		<child link="0"/>
-	</joint>
+	</joint> -->
 	<xacro:link_gazebo name="0" /> 
 
 	<xacro:chain_loop i="${link_num}" />
 
-	<!-- <xacro:ball d="0.05" mass="1"/>
+	<xacro:ball d="0.05" mass="1"/>
 	<xacro:link_gazebo name="ball"/>
-	<xacro:link_ball_joint name="ball" X="${link_length}" parent="${link_num}"/> -->
+	<xacro:link_ball_joint name="ball" X="${link_length}" parent="${link_num}"/>
 
 </robot>
