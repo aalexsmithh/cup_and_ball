@@ -17,7 +17,8 @@
 			<arg name="gui" value="true"/>
 			<arg name="headless" value="false"/>
 			<arg name="debug" value="false"/>
-			<arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>	
+			<arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
+			<arg name="physics" value="bullet" />
 		</include>
 	</group>
 
