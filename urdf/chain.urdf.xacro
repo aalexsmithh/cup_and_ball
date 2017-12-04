@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="chain">
-	<xacro:property name="link_length" value="0.075" />
+	<xacro:property name="link_length" value="0.06" />
 	<xacro:property name="link_yz" value="0.001"/>
-	<xacro:property name="link_num" value="4"/>
+	<xacro:property name="link_num" value="5"/>
 	<xacro:property name="chain_link_mass" value="0.001"/>
 	<xacro:property name="chain_link_damping" value="100.0"/>
 	<xacro:property name="chain_link_friction" value="0.0"/>
@@ -74,7 +74,7 @@
 			<origin xyz="${X} 0 0" rpy="0 0 0"/>
 			<parent link="${parent}"/>
 			<child link="${name}_phi"/>
-			<axis xyz="1 0 0" />
+			<axis xyz="0 1 0" />
 			<dynamics damping="${chain_link_damping}" friction="${chain_link_friction}"/>
 		</joint>
 
@@ -88,7 +88,7 @@
 		<joint name="${name}_y" type="continuous">
 			<parent link="${name}_phi"/>
 			<child link="${name}_psi"/>
-			<axis xyz="0 1 0" />
+			<axis xyz="0 0 1" />
 			<dynamics damping="${chain_link_damping}" friction="${chain_link_friction}"/>
 		</joint>
 
@@ -102,7 +102,7 @@
 		<joint name="${name}_z" type="continuous">
 			<parent link="${name}_psi"/>
 			<child link="${name}"/>
-			<axis xyz="0 0 1" />
+			<axis xyz="1 0 0" />
 		</joint>
 
 	</xacro:macro>
