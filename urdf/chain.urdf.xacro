@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="chain">
-	<xacro:property name="link_length" value="0.06" />
-	<xacro:property name="link_yz" value="0.001"/>
-	<xacro:property name="link_num" value="5"/>
-	<xacro:property name="chain_link_mass" value="0.001"/>
-	<xacro:property name="chain_link_damping" value="100.0"/>
+	<xacro:property name="link_length" value="0.03" />
+	<xacro:property name="link_yz" value="0.005"/>
+	<xacro:property name="link_num" value="10"/>
+	<xacro:property name="chain_link_mass" value="0.025"/>
+	<xacro:property name="chain_link_damping" value="1.0"/>
 	<xacro:property name="chain_link_friction" value="0.0"/>
 
 	<xacro:macro name="chain_link" params="name X Y Z mass">
@@ -255,7 +255,7 @@
 	<!-- build chain links with base at the bottom usign the loop. build ball, attach to chain -->
 	<link name="base_link"/>
 
-	<xacro:cup mass="1"/>
+	<xacro:cup mass=".25"/>
 	<joint name="cup_fixed" type="fixed">
 		<origin xyz="0 0 0" rpy="0 0 0" />
 		<parent link="base_link"/>
@@ -275,7 +275,7 @@
 
 	<xacro:chain_loop i="${link_num}" />
 
-	<xacro:ball d="0.05" mass="1"/>
+	<xacro:ball d="0.05" mass=".1"/>
 	<xacro:link_gazebo_chain_self_collide name="ball"/>
 	<xacro:link_ball_joint_ball name="ball" X="${link_length}" parent="${link_num}"/>
 
