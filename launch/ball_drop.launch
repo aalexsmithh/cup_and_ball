@@ -1,9 +1,9 @@
 <launch>
 	# params
-	<arg name="name" default="kendama"/>
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>
+	<arg name="ball_z" default="1"/>
 	<arg name="roll" default="0"/>
 	<arg name="pitch" default="0"/>
 	<arg name="yaw" default="0"/>
@@ -25,13 +25,28 @@
 		</include>
 	</group>
 
-	# load the chain xacro
-	<arg name="chain_xacro" default="$(find cup_and_ball)/urdf/chain.urdf.xacro"/>
-	<param name="chain_description" command="$(find xacro)/xacro --inorder '$(arg chain_xacro)'"/>
+	# load the ball xacro
+	<arg name="ball_xacro" default="$(find cup_and_ball)/urdf/ball.urdf.xacro"/>
+	<param name="ball_description" command="$(find xacro)/xacro --inorder '$(arg ball_xacro)'"/>
 
-	# put chain into gazebo
-	<node name="spawn_chain" pkg="gazebo_ros" type="spawn_model"
-	args="-param chain_description
+	# put ball into gazebo
+	<node name="spawn_ball" pkg="gazebo_ros" type="spawn_model"
+	args="-param ball_description
+		-urdf
+		-x $(arg x)
+		-y $(arg y)
+		-z $(arg ball_z)
+		-model ball"
+   respawn="false" output="screen">
+	</node>
+
+   # load the cup xacro
+	<arg name="cup_xacro" default="$(find cup_and_ball)/urdf/cup.urdf.xacro"/>
+	<param name="cup_description" command="$(find xacro)/xacro --inorder '$(arg cup_xacro)'"/>
+
+	# put cup into gazebo
+	<node name="cup_ball" pkg="gazebo_ros" type="spawn_model"
+	args="-param cup_description
 		-urdf
 		-x $(arg x)
 		-y $(arg y)
@@ -39,7 +54,8 @@
 		-R $(arg roll)
 		-P $(arg pitch)
 		-Y $(arg yaw)
-		-model $(arg name)"
+		-model cup"
    respawn="false" output="screen">
+
   </node>
 </launch>

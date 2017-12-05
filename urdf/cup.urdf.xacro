@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cup">
+
+	<xacro:macro name="cup" params="mass">
+		<link name="cup">
+			<inertial>
+				<origin xyz="-0.01 0 0"/>
+				<mass value="${mass}"/>
+				<inertia 	ixx="${mass * -0.333449}" 
+							ixy="${mass * 0.0}" 
+							ixz="${mass * -0.000074}" 
+							iyy="${mass * -0.333453}" 
+							iyz="${mass * -0.000001}" 
+							izz="${mass * -0.125942}"/>
+			</inertial>
+
+			<collision name='collision'>
+				<origin xyz="-0.01 -0.25 0"/>
+				<geometry>
+					<mesh filename="package://cup_and_ball/meshes/cup.dae" scale="0.001 0.001 0.001"/>
+				</geometry>
+				<max_contacts>10</max_contacts>
+				<surface>
+					<contact>
+						<ode/>
+					</contact>
+					<bounce/>
+					<friction>
+						<torsional>
+							<ode/>
+						</torsional>
+						<ode/>
+					</friction>
+				</surface>
+			</collision>
+
+			<visual name='visual'>
+				<origin xyz="-0.01 -0.25 0"/>
+				<geometry>
+					<mesh filename="package://cup_and_ball/meshes/cup.dae" scale="0.001 0.001 0.001"/>
+				</geometry>
+			</visual>
+
+			<self_collide>0</self_collide>
+			<enable_wind>0</enable_wind>
+			<kinematic>0</kinematic>
+		</link>
+	</xacro:macro>
+
+	<xacro:macro name="link_gazebo" params="name">
+		<gazebo reference="${name}">
+			<selfCollide>true</selfCollide>
+			<!--dampingFactor>0.0001</dampingFactor-->
+			<material>Grey</material>
+		</gazebo>
+	</xacro:macro>
+
+	<link name="base_link"/>
+	<xacro:cup mass=".25"/>
+	<joint name="cup_fixed" type="fixed">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<parent link="base_link"/>
+		<child link="cup"/>
+	</joint>
+	<xacro:link_gazebo name="cup"/>
+
+</robot>
