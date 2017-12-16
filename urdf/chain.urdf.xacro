@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="chain">
-	<xacro:property name="link_length" value="0.03" />
+	<xacro:property name="link_length" value="0.025" />
 	<xacro:property name="link_yz" value="0.005"/>
 	<xacro:property name="link_num" value="10"/>
-	<xacro:property name="chain_link_mass" value="0.025"/>
+	<xacro:property name="chain_link_mass" value="0.015"/>
 	<xacro:property name="chain_link_damping" value="1.0"/>
 	<xacro:property name="chain_link_friction" value="0.0"/>
 
@@ -25,7 +25,7 @@
 			<inertial>
 				<origin xyz="${X/2} 0 0" rpy="0 0 0" />
 				<mass value="${mass}"/>
-				<inertia ixx="${mass*(Y*Y + Z*Z)/12}" ixy="0.00" ixz="0.00" iyy="${mass*(X*X + Z*Z)/12}" iyz="0.00" izz="${mass*(X*X + Y*Y)/12}"/>
+				<inertia ixx="${mass*(Y*Y + Z*Z)/12}" ixy="0.00" ixz="0.00" iyy="${mass*(X*X + Z*Z)/12}" iyz="0.00" izz="${mass*(Y*Y + Z*Z)/12}"/>
 			</inertial>
 		</link>
 	</xacro:macro>
@@ -42,7 +42,7 @@
 		<link name="${name}_phi">
 			<inertial>
 				<mass value="0.0001" />
-				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="3.0833e-6" iyz="0" izz="5.9083e-5" />
+				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="5.8083e-5" iyz="0" izz="5.8083e-5" />
 			</inertial>
 		</link>
 
@@ -81,7 +81,7 @@
 		<link name="${name}_phi">
 			<inertial>
 				<mass value="0.0001" />
-				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="3.0833e-6" iyz="0" izz="5.9083e-5" />
+				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="5.8083e-5" iyz="0" izz="5.8083e-5" />
 			</inertial>
 		</link>
 
@@ -95,7 +95,7 @@
 		<link name="${name}_psi">
 			<inertial>
 				<mass value="0.0001" />
-				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="3.0833e-6" iyz="0" izz="5.9083e-5" />
+				<inertia ixx="5.8083e-5" ixy="0" ixz="0" iyy="5.8083e-5" iyz="0" izz="5.8083e-5" />
 			</inertial>  
 		</link>
 
